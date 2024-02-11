@@ -4,6 +4,14 @@ import bcrypt from 'bcrypt';
 const SALT_ROUNDS = 8;
 
 const usersSchema = new mongoose.Schema({
+    firstName: {
+        type: String,
+        required: true
+      },
+      lastName: {
+        type: String,
+        required: true
+      },
     username: {
         type: String,
         minLength: 3,
@@ -20,19 +28,11 @@ const usersSchema = new mongoose.Schema({
         maxLength: 50,
         required: true
     },
-    age: {
-        type: Number,
-        min: 18,
-        max: 200
+    dateOfBirth: {
+        type: Date,
+        required: true
     },
-    admin: {
-        type: Boolean,
-        default: false
-    },
-    department: {
-        type: String,
-        enum: ["IT", "UX", "DEV", "HR"]
-    },
+ 
 },{
     timestamps: true,
     toJSON: {
