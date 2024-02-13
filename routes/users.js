@@ -54,6 +54,7 @@ router.post("/", async (req, res) => {
       dateOfBirth
     });
     await newUser.save();
+    await Profile.create({user: newUser._id});
     res.status(201).json(newUser);
   } catch (error) {
     console.error('Error creating user:', error);
@@ -91,5 +92,25 @@ router.delete('/:id', async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+/**
+ * POST /signin
+ */
+router.post('/signin', async (req, res) => {
+  // check if user exist
+  // check if password is a match
+  // send the db user
+  const user = {_id: '1', email: 'alex@gmail.com', userName: 'alex123'};
+  res.json(user);
+});
 
+/**
+* POST /signup
+*/
+router.post('/signup', async (req, res) => {
+  // check email is not in db
+  // create a new user in db
+  // send the new user
+  const user = {_id: '1', email: 'alex@gmail.com', userName: 'alex123'};
+  res.json(user);
+});
 export default router;

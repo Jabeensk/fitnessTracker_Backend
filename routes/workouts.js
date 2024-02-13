@@ -26,6 +26,7 @@ router.post('/', async (req, res) => {
   }
 });
 
+
 // PUT update a workout
 router.put('/:id', async (req, res) => {
   try {
@@ -55,5 +56,6 @@ router.delete('/:id', async (req, res) => {
     res.status(500).json({ message: 'Server Error' });
   }
 });
+
 
 export default router;
