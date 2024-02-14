@@ -96,10 +96,24 @@ router.delete('/:id', async (req, res) => {
  * POST /signin
  */
 router.post('/signin', async (req, res) => {
-  // check if user exist
-  // check if password is a match
-  // send the db user
-  const user = {_id: '1', email: 'alex@gmail.com', userName: 'alex123'};
+  const {email, password} = req.body;
+console.log(password);
+  // find user with the provided email
+  const user = await User.findOne({email});
+console.log(user);
+  if (!user) {
+    return res.status(401).json({msg: "Invalid Credentials"});
+  }
+
+  // verify provided password with password hash from db
+  const passwordMatched = bcrypt.compare(password, user.password);
+console.log(passwordMatched);
+
+  if (!passwordMatched) {
+    return res.status(401).json({msg: "Invalid Credentials password"})
+  }
+
+  // TODO: generate a jwt token and send it to the client
   res.json(user);
 });
 

@@ -6,12 +6,13 @@ const router = express.Router();
 // GET all workouts for a specific user
 router.get('/:userId', async (req, res) => {
   try {
-    const userId = req.params.userId;
-    const workouts = await Workout.find({ userId });
+    // const userId = req.params.userId;
+    const workouts = await Workout.find({ userId:req.params.userId });
+    console.log(workouts);
     res.status(200).json(workouts);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Server Error' });
+    res.status(500).json({ message: error.message });
   }
 });
 
@@ -21,8 +22,8 @@ router.post('/', async (req, res) => {
     const workout = await Workout.create(req.body);
     res.status(201).json(workout);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Server Error' });
+    // console.error(error);
+    res.status(500).json({ message: error.message });
   }
 });
 

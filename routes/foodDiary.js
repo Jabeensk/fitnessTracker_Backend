@@ -15,8 +15,10 @@ router.post('/', async (req, res) => {
 
 // Get all food diary entries for a user
 router.get('/:userId', async (req, res) => {
+ console.log(req.params.userId)
   try {
     const entries = await FoodDiaryEntry.find({ userId: req.params.userId });
+    console.log(entries)
     res.json(entries);
   } catch (error) {
     res.status(500).json({ message: error.message });

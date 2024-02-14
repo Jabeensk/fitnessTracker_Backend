@@ -8,7 +8,7 @@ const foodDiaryEntrySchema = new mongoose.Schema({
   },
   date: {
     type: Date,
-    required: true
+    default: Date.now()
   },
   waterIntake: {
     type: Number,
