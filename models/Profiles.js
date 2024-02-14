@@ -13,7 +13,7 @@ const profileSchema = new mongoose.Schema({
   },
   avatar: {
     type: String,
-    default: '' // URL of the avatar image here
+    default: '' 
   },
  
 }, { timestamps: true });
