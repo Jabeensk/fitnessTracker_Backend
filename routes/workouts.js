@@ -28,7 +28,7 @@ router.post('/', async (req, res) => {
 });
 
 
-// PUT update a workout
+// PUT update a workouts
 router.put('/:id', async (req, res) => {
   try {
     const { id } = req.params;
